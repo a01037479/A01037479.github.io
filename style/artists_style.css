@@ -1,0 +1,99 @@
+#container{
+    text-align: center;
+    width: 350px;
+    margin: auto;
+}
+#search_container{
+    width: 350px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: rgb(211, 209, 209);
+    border-radius: 3px;
+    padding-bottom: 20px;
+}
+#artists_container{
+    text-align: center;
+    width: 300px;
+    margin: auto;
+}
+#search_field{
+    width: 300px;
+    height:25px;
+    display: inline-block; 
+    margin: 0 auto;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: rgb(211, 209, 209);
+    border-radius: 3px;
+}
+h2{
+    text-align: left;
+    width: 300px;
+    display: inline-block; 
+    margin: 0 auto;
+    padding: 20px;
+}
+#artists_container ul{
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}
+
+#artists_container li{
+    width:300px;
+    height:80px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: rgb(211, 209, 209);
+    border-top: none;
+}
+
+#artists_container li:hover{
+    background-color: rgb(228, 228, 228);
+}
+
+.artists_names{
+    font-size: 12pt;
+    margin-bottom: 0;
+}
+
+.artists_institutions{
+    margin-top: 0;
+    font-size: 9pt;
+}
+
+.img_col{
+    width:25%;
+    height:80px;
+    float:left;
+}
+.info_col{
+    width:75%;
+    height:80px;
+    float:right;
+}
+
+.img_col img{
+    margin:12px;
+    border-radius: 5px;
+    width:60px;
+    height:auto;
+}
+
+.info_col p{
+    margin-left:12px;
+    text-align: left;
+}
+
+#search_container p{
+    text-align: left;
+    margin: 25px;
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: "Trebuchet MS";
+}
+
+p {
+    font-family: "Arial", "Times New Roman", Times, serif;
+  }
