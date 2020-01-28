@@ -6,13 +6,23 @@
     </title>
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style/artists_style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
 <div id="container">
     <div id="search_container">
         <p>Artist Directory</p>
-        <input id="search_field" type="text">
+        <input id="search_field" type="text"><br>
+        <button onclick="toggleForm()">Add Artist</button>
     </div>
+
+    <form id="add_artist_form" style="display:none">
+        <input type="text" name="artist_name" placeholder="Artist Name"><br>
+        <input type="text" name="about_artist" placeholder="About Artist"><br>
+        <input type="text" name="img_url" placeholder="Image URL"><br>
+        <button type="button" onclick="appendArtist()">Add</button>
+    </form> 
+
     <div id="artists_container">
         <ul>
             <li>
@@ -24,6 +34,7 @@
                     <p class="artists_names">Barot</p>
                     <p class="artists_institutions">Royal Academy of Painting and Sculpture</p>
                 </div>
+                <button class="del_btn_col" onclick="removeArtist(this)">Delete</button>
             </li>
             <li>
                 <div class="img_col">
@@ -33,6 +44,7 @@
                         <p class="artists_names">Jon</p>
                         <p class="artists_institutions">Aritist to Watch in 2012</p>
                     </div>
+                    <button class="del_btn_col" onclick="removeArtist(this)">Delete</button>
             </li>
             <li>
                 <div class="img_col">
@@ -42,6 +54,7 @@
                         <p class="artists_names">Hillary</p>
                         <p class="artists_institutions">New York University</p>
                     </div>
+                    <button class="del_btn_col" onclick="removeArtist(this)">Delete</button>
             </li>
             <li>
                 <div class="img_col">
@@ -50,7 +63,8 @@
                     <div class="info_col">
                         <p class="artists_names">Hassum</p>
                         <p class="artists_institutions">Art Collage in New Dehi</p>
-                    </divclass="col">
+                    </div>
+                    <button class="del_btn_col" onclick="removeArtist(this)">Delete</button>
             </li>
             <li>
                 <div class="img_col">
@@ -60,6 +74,7 @@
                         <p class="artists_names">Jennifer</p>
                         <p class="artists_institutions">BCIT</p>
                     </div>
+                    <button class="del_btn_col" onclick="removeArtist(this)">Delete</button>
             </li>
         </ul>
     </div>
