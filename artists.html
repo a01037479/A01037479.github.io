@@ -13,19 +13,20 @@
     <div id="search_container">
         <p>Artist Directory</p>
         <input id="search_field" type="text"><br>
-        <button onclick="toggleForm()">Add Artist</button>
+        <button onclick="toggleForm()">Add</button>
+        <button onclick="filterArtists(null)">Search</button>
     </div>
 
     <form id="add_artist_form" style="display:none">
         <input type="text" name="artist_name" placeholder="Artist Name"><br>
         <input type="text" name="about_artist" placeholder="About Artist"><br>
         <input type="text" name="img_url" placeholder="Image URL"><br>
-        <button type="button" onclick="appendArtist()">Add</button>
+        <button type="button" onclick="submitAddForm()">Add</button>
     </form> 
 
     <div id="artists_container">
         <ul>
-            <li>
+            <!-- <li>
                 <div class="img_col">
                     <img src="https://randomuser.me/api/portraits/med/men/1.jpg">
                 </div>
@@ -75,7 +76,7 @@
                         <p class="artists_institutions">BCIT</p>
                     </div>
                     <button class="del_btn_col" onclick="removeArtist(this)">Delete</button>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>
