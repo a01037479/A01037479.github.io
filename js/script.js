@@ -1,5 +1,6 @@
 
  window.onload = function(){
+     console.log('Page loaded.')
      loadArtists()
  }
 
@@ -160,8 +161,9 @@ function loadArtists(){
             if(artists===null)
                 artists = [];
             else{
+                console.log(artists);
                 artists.forEach(function(artist){
-                appendArtist(artist);
+                    appendArtist(artist);
             })
         }
         })
