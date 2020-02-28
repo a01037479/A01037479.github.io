@@ -1,15 +1,14 @@
-var artists=[];
 
-window.onload = function(){
-    loadLocalStorage()
-}
+ window.onload = function(){
+     loadArtists()
+ }
 
 class Artist {
-    constructor(artistName, aboutArtist, imgUrl, li){
+    constructor(artistName, aboutArtist, imgUrl){
+        this.id = new Date().getTime();
         this.artistName = artistName;
         this.aboutArtist = aboutArtist;
         this.imgUrl = imgUrl;
-        this.li = li;
     }
 } 
 
@@ -37,7 +36,6 @@ function appendArtist(artist){
     p2.className = "artists_institutions";
     btn.className = "del_btn_col";
     btn.onclick = function(){removeArtist(artist,btn)};
-    artist.li = li;
     img.src = artist.imgUrl;
     p1.textContent = artist.artistName;
     p2.textContent = artist.aboutArtist;
@@ -68,41 +66,67 @@ function submitAddForm() {
             imgUrl = input.value;
     }
 
-    console.log(artistName);
-    console.log(aboutArtist);
-    console.log(imgUrl);
-    let artist = new Artist(artistName, aboutArtist, imgUrl, null);
-    appendArtist(artist);
-    artists.push(artist);
-    localStorage.setItem("artists", JSON.stringify(artists));
-    toggleForm();
-    showAllArtists();
+    let artist = new Artist(artistName, aboutArtist, imgUrl);
+
+    fetch('/add', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(artist)
+       })
+       .then((response) => response.json())
+       .then((json) => {
+        console.log(json);
+        console.log('fetch worked');
+        appendArtist(artist);
+        toggleForm();
+        filterArtists('');
+       })
+       .catch((err) => console.log(err))
+
 }
 
 function removeArtist(artist,btn){
-    btn.parentNode.remove();
-    const index = artists.indexOf(artist);
-    if (index > -1)
-        artists.splice(index, 1);
-    localStorage.setItem("artists", JSON.stringify(artists));
+    fetch('/del', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({artistId:artist.id})
+       })
+       .then((response) => response.json())
+       .then((json) => {
+        console.log(json);
+        console.log('fetch worked');
+        btn.parentNode.remove();
+       })
+       .catch((err) => console.log(err))
 }
 
 function filterArtists(keyWord){
     if(keyWord==null)
         keyWord = document.getElementById("search_field").value;
-    artists.forEach(function(artist){
-        if(!artist.artistName.toUpperCase().includes(keyWord.toUpperCase())){
-            artist.li.style.display = "none";
-        }
-        else{
-            artist.li.style.display = "block";
-        }
-    })
-    document.getElementById("search_field").value=keyWord;
-}
+    let ul = document.querySelector('#artists_list');
+    while(ul.hasChildNodes()){
+        ul.removeChild(ul.firstChild);
+    }
 
-function showAllArtists(){
-    filterArtists("");
+    fetch('/search', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({'keyWord':keyWord})
+       })
+       .then((response) => response.json())
+       .then((json) => {
+        console.log(json);
+        console.log('fetch worked');
+        for(let i=0; i<json.length; i++)
+            appendArtist(json[i]);
+       })
+       .catch((err) => console.log(err))
 }
 
 function validateForm() {
@@ -123,13 +147,26 @@ function validateForm() {
     return 0;
 }
 
-function loadLocalStorage(){
-    artists = JSON.parse(localStorage.getItem("artists"));
-    if(artists===null)
-        artists = [];
-    else{
-        artists.forEach(function(artist){
-            appendArtist(artist);
+function loadArtists(){
+    fetch('/all')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
         })
-    }
+        .then(json => {
+            artists = json;
+            if(artists===null)
+                artists = [];
+            else{
+                artists.forEach(function(artist){
+                appendArtist(artist);
+            })
+        }
+        })
+        .catch(function () {
+            console.log("Failed to display artists.");
+        })
 }
+
