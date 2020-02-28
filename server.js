@@ -18,7 +18,7 @@ app.get('/artists' ,(req,res) => {
     res.sendFile(path.join(__dirname,'artists.html'));
 }); 
 
-app.listen(9000);
+app.listen(process.env.PORT || 5000);
 
 app.post('/add', (req,res) => {
     var artist = req.body;
