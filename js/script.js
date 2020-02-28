@@ -1,8 +1,7 @@
 
  window.onload = function(){
      console.log('Page loaded.')
-    //  loadArtists()
-    filterArtists('');
+     loadArtists()
  }
 
 class Artist {

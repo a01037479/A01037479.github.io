@@ -5,7 +5,6 @@ let fs = require('fs');
 let util = require('util'); 
 let app = express();
 let artists = [];
-let artists_json = require('./artists.json');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended:false}));  // middleware
@@ -43,7 +42,14 @@ app.post('/add', (req,res) => {
 });
 
 app.get('/all', (req,res) => {
-    res.json(artists_json);
+    const readFile = util.promisify(fs.readFile);  
+    readFile("artists.json", "utf8")
+        .then(
+            (content)=>{
+                artists = JSON.parse(content);
+                res.json(artists); }
+            )
+        .catch((error)=>console.log(error));  
 });
 
 app.post('/del', (req,res) => {
