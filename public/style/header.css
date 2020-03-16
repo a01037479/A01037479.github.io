@@ -1,0 +1,25 @@
+header{
+    text-align:right;
+    background-color: #F0E9E4;
+    padding: 10px;
+    padding-top: 0;
+    margin-bottom: 20px;
+}
+header button{
+    background-color: chocolate;
+    text-align: center;
+    font-size: 15pt;
+    color:white;
+    border-radius: 3px;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    height: auto;
+    width: 130px;
+    padding:10px;
+}
+
+header button:hover{
+    background-color: rgba(22, 20, 20, 0.726);
+    color:white;
+}

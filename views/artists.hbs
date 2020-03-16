@@ -1,0 +1,35 @@
+{{>header}}
+<div id="container">
+    <form action="/artists/search" method="POST" id="search_container">
+        <p>Artist Directory</p>
+        <input id="search_field" type="text" name="search_keyword"><br>
+        <button type="button" onclick="toggleForm()">Add</button>
+        <button type="submit">Search</button>
+    </form>
+
+    <form action="/artists/add" method="POST" id="add_artist_form" style="display:none" onsubmit="return validateForm();">
+        <input type="text" name="artist_name" placeholder="Artist Name"><br>
+        <input type="text" name="about_artist" placeholder="About Artist"><br>
+        <input type="text" name="img_url" placeholder="Image URL"><br>
+        <button type="submit">Add</button>
+    </form> 
+
+    <div id="artists_container">
+        <ul id="artists_list">
+            {{#each artists}}
+            <li>
+                <div class="img_col">
+                    <img src={{this.imgurl}}>
+                </div>
+                <div class="info_col">
+                    <p class="artists_names">{{this.name}}</p>
+                    <p class="artists_institutions">{{this.about}}</p>
+                </div>
+                <form action="/artists/remove/{{this.id}}" method="POST">
+                    <button type="submit" class="del_btn_col">Delete</button>
+                </form>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

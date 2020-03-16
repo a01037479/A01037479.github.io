@@ -1,0 +1,46 @@
+body {
+    background-color: #F0E9E4;
+    font-family: 'Nunito', sans-serif;
+    padding: 40px;
+}
+button{
+    background-color: chocolate;
+    text-align: center;
+    font-size: 15pt;
+    color:white;
+    border-radius: 3px;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    height: auto;
+    width: 130px;
+    padding:10px;
+}
+
+button:hover{
+    background-color: rgba(22, 20, 20, 0.726);
+    color:white;
+}
+form {
+    text-align: center;
+}
+
+input {
+    margin: 0;
+    padding: 10px;
+    padding-left: 30px;
+    height: 10px;
+    width: 120px;
+    font-style: italic;
+}
+
+input:focus{
+    outline:none;
+}
+
+i {
+    color:grey;
+    position: absolute;
+    padding: 10px;
+}
